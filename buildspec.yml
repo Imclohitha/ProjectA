@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies"
+      - npm install
+  build:
+    commands:
+      - echo "Build stage started"
+      - npm run build || echo "No build step needed"
+  post_build:
+    commands:
+      - echo "Zipping artifacts"
+      - zip -r app.zip * .[^.]*
+artifacts:
+  files:
+    - app.zip
